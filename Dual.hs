@@ -1,8 +1,17 @@
 module Dual (
-        Dual, eps
+        Dual, eps, re, du, dual
     ) where
 
 data Dual x = D x x deriving (Eq)
+
+dual :: x -> x -> Dual x
+dual = D
+
+re :: Dual x -> x
+re (D a _) = a
+
+du :: Dual x -> x
+du (D _ b) = b
 
 instance (Show x) => Show (Dual x) where
     show (D a b) = show a ++ " + " ++  show b ++ "*eps"
