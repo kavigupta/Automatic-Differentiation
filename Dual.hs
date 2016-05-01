@@ -25,5 +25,9 @@ instance (Num x, Eq x) => Num (Dual x) where
         0 -> D (signum b) 0
         x -> D x 0
 
+instance (Eq x, Fractional x) => Fractional (Dual x) where
+    recip (D a b) = D (1 / a) (-b / (a * a))
+    fromRational x = D (fromRational x) 0
+
 eps :: (Num a) => Dual a
 eps = D 0 1
